@@ -32,5 +32,17 @@ namespace dolgozat
         {
             return szornyek.Average(sz => sz.VeszelyessegiSzint);
         }
+
+        public IEnumerable<Szorny> LegveszelyesebbSzornyek()
+        {
+            return szornyek.Where(sz => sz.VeszelyessegiSzint == szornyek.Select(sz => sz.VeszelyessegiSzint).Max());
+        }
+
+        public IEnumerable<Szorny> MocsariVeszelyesSzornyek()
+        {
+            return szornyek.Where(sz => sz.Elohely == "Fekete Mocsár" && sz.VeszelyessegiSzint >= 5).OrderByDescending(sz => sz.VeszelyessegiSzint);
+        }
+
+
     }
 }
