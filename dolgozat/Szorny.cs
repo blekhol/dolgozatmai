@@ -6,6 +6,7 @@ namespace dolgozat
 {
     internal class Szorny
     {
+
         private int id;
         private string nev;
         private int veszelyessegiSzint;
