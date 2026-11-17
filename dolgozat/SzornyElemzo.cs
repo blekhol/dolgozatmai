@@ -43,6 +43,21 @@ namespace dolgozat
             return szornyek.Where(sz => sz.Elohely == "Fekete Mocsár" && sz.VeszelyessegiSzint >= 5).OrderByDescending(sz => sz.VeszelyessegiSzint);
         }
 
+        public bool VanExtremTuzGyengeSzorny()
+        {
+            return szornyek.Any(sz => sz.FoGyengeseg == "Tűz" && sz.VeszelyessegiSzint >= 9);
+        }
 
+        public IEnumerable<string> SzornyekSzamaElohelyenkent()
+        {
+            List<string> sorok = [];
+
+            foreach(var elohely in szornyek.GroupBy(sz => sz.Elohely))
+            {
+                sorok.Add($"{elohely.Key}: {elohely.Count()}");
+            }
+
+            return sorok;
+        }
     }
 }
